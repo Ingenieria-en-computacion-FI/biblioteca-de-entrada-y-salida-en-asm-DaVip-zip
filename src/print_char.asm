@@ -1,24 +1,21 @@
-SECTION .text
 global print_char
 
-; ---------------------------------
-; print_char
-; Entrada:
-;   AL = caracter a imprimir
-; ---------------------------------
-
+section .text
+; Imprime el carácter almacenado en el registro AL.
 print_char:
-
     push ebp
     mov ebp, esp
-
-    ; TODO:
-    ; 1. Guardar el caracter en memoria
-    ; 2. Usar syscall write
-    ; 3. Imprimir 1 byte
-
-    ; write(fd=1, buffer, 1)
-
+    
+    push eax            ; Guardar el carácter en la pila
+    
+    mov eax, 4          ; sys_write
+    mov ebx, 1          ; stdout
+    mov ecx, esp        ; Apuntamos al carácter en la pila
+    mov edx, 1          ; Imprimir 1 byte
+    int 0x80            ; Llamada al sistema
+    
+    pop eax             ; Restauramos el registro
+    
     mov esp, ebp
     pop ebp
     ret

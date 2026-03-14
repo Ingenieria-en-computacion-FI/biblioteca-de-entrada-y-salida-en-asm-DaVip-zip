@@ -1,16 +1,19 @@
-extern print_char
 global newline
+extern print_char
 
-SECTION .text
-
+section .text
+; Imprime un salto de línea.
 newline:
-
     push ebp
     mov ebp, esp
-
-    ; TODO:
-    ; imprimir '\n'
-
+    
+    push eax
+    
+    mov al, 10          ; ASCII para salto de línea (\n)
+    call print_char
+    
+    pop eax
+    
     mov esp, ebp
     pop ebp
     ret

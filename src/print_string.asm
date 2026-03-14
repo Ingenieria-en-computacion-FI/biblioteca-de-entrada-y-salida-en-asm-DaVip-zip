@@ -1,8 +1,6 @@
 SECTION .text
 global print_string
 
-; ---------------------------------
-; print_string
 ; Entrada:
 ;   EAX = direccion de cadena
 ;   cadena terminada en 0global print_string
